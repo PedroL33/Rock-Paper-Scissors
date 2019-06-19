@@ -1,0 +1,54 @@
+<script>
+    var pscore = 0;
+    var cscore = 0;
+    function computerPlay() {
+        var num = Math.floor(Math.random()*3);
+        if(num==0) {
+            return("rock");
+        }
+        else if (num==1) {
+            return("paper");
+        }
+        else {
+            return("scissor");
+        }
+    }
+
+    function playRound(playerSelection, computerSelection) {
+        var play = playerSelection.substring(0,1).toUpperCase() + playerSelection.toLowerCase().slice(1);
+        var comp = computerSelection.substring(0,1).toUpperCase() + computerSelection.toLowerCase().slice(1);
+        if (play == comp) {
+            return console.log("Draw. Choose again.");
+        }
+        else if (play == "Rock" && comp == "Scissor" || play == "Scissor" && comp == "Paper" || play == "Paper" && comp == "Rock") {
+            console.log("You win! " + play + " beats " + comp);
+            pscore+=1;
+        }
+        else if(play == "Rock" && comp == "Paper" || play == "Scissor" && comp == "Rock" || play == "Paper" && comp == "Scissor"){
+            console.log("You lose! " + comp + " beats " + play);
+            cscore += 1;
+        }
+        else {
+            console.log("You suck at typing.")
+        }
+    }
+
+    function game() {
+        var pSelection = prompt("Rock, paper, or scissors?");
+        var cSelection = computerPlay();
+        playRound(pSelection, cSelection);
+        if(pscore == 3) {
+            console.log("You win! " + pscore + " to " + cscore);
+            pscore = 0;
+            cscore = 0;
+        }
+        else if (cscore == 3) {
+            console.log("You lose. " + pscore + " to " + cscore);
+            pscore = 0;
+            cscpre = 0;
+        }
+        else {
+            game();
+        }
+    }
+</script>
